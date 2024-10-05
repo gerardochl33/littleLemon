@@ -7,7 +7,7 @@ class booking(models.Model):
     BookingDate = models.DateField()
 
     def __str__(self):
-        return f"{self.Name}"
+        return self.Name
 
 class table(models.Model):
     Title = models.CharField(max_length=50)
@@ -15,4 +15,4 @@ class table(models.Model):
     Inventory = models.IntegerField()
 
     def __str__(self):
-        return f"{self.Title}"
+        return self.Title
