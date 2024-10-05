@@ -5,6 +5,8 @@ class booking(models.Model):
     Name = models.CharField(max_length=100)
     No_of_guests = models.IntegerField()
     BookingDate = models.DateField()
+    Tableno = models.IntegerField()
+    Persons = models.IntegerField()
 
     def __str__(self):
         return self.Name
@@ -16,3 +18,7 @@ class table(models.Model):
 
     def __str__(self):
         return self.Title
+
+class menu(models.Model):
+    item = models.CharField(max_length=100)
+    price = models.IntegerField()
