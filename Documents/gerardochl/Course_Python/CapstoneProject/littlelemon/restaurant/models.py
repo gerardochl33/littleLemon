@@ -22,3 +22,9 @@ class table(models.Model):
 class menu(models.Model):
     item = models.CharField(max_length=100)
     price = models.IntegerField()
+
+class user(models.Model):
+    url = models.CharField(max_length=100)
+    username = models.CharField(max_length=100)
+    email = models.CharField(max_length=100)
+    groups = models.CharField(max_length=100)

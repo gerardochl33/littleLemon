@@ -1,11 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from rest_framework import viewsets, permissions
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView, DestroyAPIView
-from .models import booking, menu
-from .serializers import bookingSerializer, menuSerializer
+from .models import booking, menu, user
+from .serializers import bookingSerializer, menuSerializer, UserSerializer
 
 # Create your views here.
 def index(request):
@@ -31,7 +32,16 @@ class MenuItemView(ListCreateAPIView):
 class SingleMenuItemView(RetrieveUpdateAPIView, DestroyAPIView):
     queryset = menu.objects.all()
     serializer_class = menuSerializer
-	
+
+class BookingViewSet(viewsets.ModelViewSet):
+    queryset = booking.objects.all()
+    serializer_class = bookingSerializer
+
+class UserViewSet(viewsets.ModelViewSet):
+   queryset = user.objects.all()
+   serializer_class = UserSerializer
+   permission_classes = [permissions.IsAuthenticated] 
+
 #def sayHello(request):
  #return HttpResponse('Hello World')
 
