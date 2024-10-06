@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from rest_framework.views import APIView
+from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .models import booking
-from .serializers import bookingSerializer
-
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView, DestroyAPIView
+from .models import booking, menu
+from .serializers import bookingSerializer, menuSerializer
 
 # Create your views here.
 def index(request):
@@ -23,7 +24,14 @@ def post(self, request):
 		serializer.save()
 		return Response({"status": "success", "data": serializer.data})
 	
-    
+class MenuItemView(ListCreateAPIView):
+    queryset = menu.objects.all()
+    serializer_class = menuSerializer
+
+class SingleMenuItemView(RetrieveUpdateAPIView, DestroyAPIView):
+    queryset = menu.objects.all()
+    serializer_class = menuSerializer
+	
 #def sayHello(request):
  #return HttpResponse('Hello World')
 

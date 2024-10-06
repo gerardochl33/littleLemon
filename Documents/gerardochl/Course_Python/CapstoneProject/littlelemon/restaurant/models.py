@@ -5,8 +5,8 @@ class booking(models.Model):
     Name = models.CharField(max_length=100)
     No_of_guests = models.IntegerField()
     BookingDate = models.DateField()
-    Tableno = models.IntegerField()
-    Persons = models.IntegerField()
+    Tableno = models.IntegerField(default=1)
+    Persons = models.IntegerField(default=1)
 
     def __str__(self):
         return self.Name
